@@ -38,10 +38,11 @@ export const createBook = async (req, res) => {
   if (!publishYear) emptyFields.push('publishYear')
 
   // if emptyFields array contains elements, return error with missing fields
-  if (emptyFields)
+  if (emptyFields.length > 0) {
     return res
       .status(400)
       .json({ error: 'Please fill in all required fields!', emptyFields })
+  }
 
   // try/catch to create and add doc to database
   try {
