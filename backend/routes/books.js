@@ -4,6 +4,7 @@ import {
   getBook,
   createBook,
   deleteBook,
+  updateBook,
 } from '../controllers/booksController.js'
 
 export const router = Router()
@@ -21,6 +22,4 @@ router.post('/', createBook)
 router.delete('/:id', deleteBook)
 
 // UPDATE a book
-router.patch('/:id', (req, res) => {
-  res.status(200).send('UPDATE a book')
-})
+router.patch('/:id', updateBook)

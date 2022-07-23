@@ -77,3 +77,23 @@ export const deleteBook = async (req, res) => {
   res.status(200).json(book)
 }
 
+export const updateBook = async (req, res) => {
+  const { id } = req.params
+
+  // validate book ID given
+  if (!mongoose.Types.ObjectId.isValid(id))
+    return res.status(404).json({ error: 'Invalid book ID' })
+
+  // find my ID, and spread in whatever is being updated
+  const book = await Book.findOneAndUpdate(
+    { _id: id },
+    {
+      ...req.body,
+    }
+  )
+
+  if (!book) return res.status(400).json({ error: 'No such book exists!' })
+
+  // if success, send back updated book
+  res.status(200).json(book)
+}
