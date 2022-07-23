@@ -3,6 +3,7 @@ import {
   getBooks,
   getBook,
   createBook,
+  deleteBook,
 } from '../controllers/booksController.js'
 
 export const router = Router()
@@ -17,9 +18,7 @@ router.get('/:id', getBook)
 router.post('/', createBook)
 
 // DELETE a book
-router.delete('/:id', (req, res) => {
-  res.status(200).send('DELETE a book')
-})
+router.delete('/:id', deleteBook)
 
 // UPDATE a book
 router.patch('/:id', (req, res) => {

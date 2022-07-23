@@ -19,7 +19,7 @@ export const getBook = async (req, res) => {
   const book = await Book.findById(id)
 
   // check if such book exists
-  if (!book) return res.status(400).json({ error: 'No such workout exists!' })
+  if (!book) return res.status(400).json({ error: 'No such book exists!' })
 
   res.status(200).json(book)
 }
@@ -58,3 +58,22 @@ export const createBook = async (req, res) => {
     res.status(400).json({ error })
   }
 }
+
+/* ----- DELETE a book -----*/
+export const deleteBook = async (req, res) => {
+  // destructure id from req
+  const { id } = req.params
+
+  // validate book ID given
+  if (!mongoose.Types.ObjectId.isValid(id))
+    return res.status(404).json({ error: 'Invalid book ID' })
+
+  // use the book ID to find and delete from database
+  const book = await Book.findOneAndDelete({ _id: id })
+
+  if (!book) return res.status(400).json({ error: 'No such book exists!' })
+
+  // send back the deleted book if successfully deleted
+  res.status(200).json(book)
+}
+
