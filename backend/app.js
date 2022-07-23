@@ -3,12 +3,15 @@ import mongoose from 'mongoose'
 import express from 'express'
 import dotenv from 'dotenv'
 
+import { router as bookRoutes } from './routes/books.js' // must use .js when using modules style in node
+
 // app setup
 dotenv.config()
 const app = express()
 
 // middlewares
 app.use(express.json())
+app.use('/api/books', bookRoutes)
 
 // connect to mongoDB
 mongoose
