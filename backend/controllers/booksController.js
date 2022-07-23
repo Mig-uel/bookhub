@@ -89,7 +89,8 @@ export const updateBook = async (req, res) => {
     { _id: id },
     {
       ...req.body,
-    }
+    },
+    { new: true }
   )
 
   if (!book) return res.status(400).json({ error: 'No such book exists!' })
