@@ -8,6 +8,9 @@ export const HomeComponentContainer = styled.div`
   height: auto;
 
   padding: 20px;
+  gap: 20px;
 
-  outline: 2px solid black;
+  /* outline: 2px solid black; */
+`
+export const HomeComponentTitle = styled.h2`
 `
