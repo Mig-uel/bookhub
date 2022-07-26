@@ -14,7 +14,7 @@ import { BooksContainer } from './books.styles'
 const Books = () => {
   useFetch('https://bookhub-backend.herokuapp.com/api/books')
 
-  const books = useSelector((state) => state.books)
+  const { books } = useSelector((state) => state.books)
   const { loading } = useSelector((state) => state.loading)
 
   return (
@@ -36,7 +36,7 @@ const Books = () => {
           visible={true}
         />
       ) : (
-        books && books.books.map((book) => <Book key={book._id} book={book} />)
+        books && books.map((book) => <Book key={book._id} book={book} />)
       )}
 
       {/* {books && console.log(books)}
