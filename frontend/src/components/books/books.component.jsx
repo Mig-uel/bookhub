@@ -15,7 +15,7 @@ const Books = () => {
   useFetch('https://bookhub-backend.herokuapp.com/api/books')
 
   const books = useSelector((state) => state.books)
-  const loading = useSelector((state) => state.loading)
+  const { loading } = useSelector((state) => state.loading)
 
   return (
     <BooksContainer>
@@ -26,13 +26,19 @@ const Books = () => {
           radius='9'
           color='#000'
           ariaLabel='three-dots-loading'
-          wrapperStyle={{}}
+          wrapperStyle={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+          }}
           wrapperClassName=''
           visible={true}
         />
       ) : (
         books && books.books.map((book) => <Book key={book._id} book={book} />)
       )}
+
       {/* {books && console.log(books)}
       {books && books.books.map((book) => <Book key={book._id} book={book} />)} */}
     </BooksContainer>
