@@ -12,14 +12,13 @@ import { ThreeDots } from 'react-loader-spinner'
 import { BooksContainer } from './books.styles'
 
 const Books = () => {
-  useFetch('/api/books')
+  useFetch('https://bookhub-backend.herokuapp.com/api/books')
 
   const books = useSelector((state) => state.books)
   const loading = useSelector((state) => state.loading)
 
   return (
     <BooksContainer>
-      
       {loading ? (
         <ThreeDots
           height='80'
