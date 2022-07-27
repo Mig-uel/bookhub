@@ -40,7 +40,7 @@ const Books = () => {
           visible={true}
         />
       ) : (
-        books && books.map((book) => <Book key={book._id} book={book} />)
+        books.map((book) => <Book key={book._id} book={book} />)
       )}
     </BooksContainer>
   )
