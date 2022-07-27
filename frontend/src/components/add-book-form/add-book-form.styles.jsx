@@ -22,12 +22,19 @@ export const AddBookInputContainer = styled.div`
   align-items: center;
 
   gap: 5px;
-  margin: 10px 0;
 
   label {
     font-size: 1.2rem;
     font-weight: bold;
     align-self: flex-start;
+  }
+
+  input {
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 0 10px;
+    font-size: 1.2rem;
   }
 
   @media (max-width: 768px) {
@@ -36,5 +43,20 @@ export const AddBookInputContainer = styled.div`
     input {
       width: 100%;
     }
+  }
+`
+export const AddBookButtonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  button {
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 0 10px;
+    font-size: 1.1rem;
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
   }
 `
