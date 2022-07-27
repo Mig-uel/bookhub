@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addBook } from '../../store/books/books'
 
+import { useNavigate } from 'react-router-dom'
+
 import {
   AddBookFormContainer,
   AddBookInputContainer,
@@ -10,14 +12,34 @@ import {
 
 const AddBookForm = () => {
   const dispatch = useDispatch()
-  const { error } = useSelector((state) => state.books)
+  let navigate = useNavigate()
+  const { error, status } = useSelector((state) => state.books)
 
   const [title, setTitle] = useState('')
   const [author, setAuthor] = useState('')
   const [publishYear, setPublishYear] = useState('')
 
   return (
-    <AddBookFormContainer>
+    <AddBookFormContainer
+      onSubmit={(e) => {
+        e.preventDefault()
+        dispatch(addBook({ title, author, publishYear }))
+
+        setTitle('')
+        setAuthor('')
+        setPublishYear('')
+
+        // if (error) {
+        //   alert(error)
+        // }
+
+        if (status === 'success') {
+          navigate('/')
+        }
+
+        // e.target.reset()
+      }}
+    >
       <AddBookInputContainer>
         <label htmlFor=''>Book Title</label>
         <input
@@ -54,14 +76,7 @@ const AddBookForm = () => {
         />
       </AddBookInputContainer>
       <AddBookButtonContainer>
-        <button
-          onClick={(e) => {
-            e.preventDefault()
-            dispatch(addBook({ title, author, publishYear }))
-          }}
-        >
-          Submit
-        </button>
+        <button type='submit'>Submit</button>
       </AddBookButtonContainer>
       {/* {console.log(error)} */}
     </AddBookFormContainer>
