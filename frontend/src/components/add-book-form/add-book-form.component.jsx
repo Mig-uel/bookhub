@@ -13,7 +13,7 @@ import {
 const AddBookForm = () => {
   const dispatch = useDispatch()
   let navigate = useNavigate()
-  const { error, status } = useSelector((state) => state.books)
+  const { status } = useSelector((state) => state.books)
 
   const [title, setTitle] = useState('')
   const [author, setAuthor] = useState('')
@@ -29,6 +29,7 @@ const AddBookForm = () => {
         setAuthor('')
         setPublishYear('')
 
+        // must import error state from redux store
         // if (error) {
         //   alert(error)
         // }
