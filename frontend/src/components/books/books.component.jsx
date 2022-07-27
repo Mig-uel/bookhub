@@ -1,8 +1,6 @@
 // redux books state
-import { useSelector } from 'react-redux'
-
-// custom hooks
-import { useFetch } from '../../hooks/useFetch'
+import { useSelector, useDispatch } from 'react-redux'
+import { getBooks } from '../../store/books/books'
 
 // components
 import Book from '../book/book.component'
@@ -10,16 +8,22 @@ import { ThreeDots } from 'react-loader-spinner'
 
 // styles
 import { BooksContainer } from './books.styles'
+import { useEffect } from 'react'
 
 const Books = () => {
-  useFetch('https://bookhub-backend.herokuapp.com/api/books')
+  const dispatch = useDispatch()
 
-  const { books } = useSelector((state) => state.books)
-  const { loading } = useSelector((state) => state.loading)
+  useEffect(() => {
+    dispatch(getBooks())
+  }, [dispatch])
+
+  const { books, status } = useSelector((state) => state.books)
+
+  // console.log(books)
 
   return (
     <BooksContainer>
-      {loading ? (
+      {status === 'loading' ? (
         <ThreeDots
           height='80'
           width='80'
@@ -38,9 +42,6 @@ const Books = () => {
       ) : (
         books && books.map((book) => <Book key={book._id} book={book} />)
       )}
-
-      {/* {books && console.log(books)}
-      {books && books.books.map((book) => <Book key={book._id} book={book} />)} */}
     </BooksContainer>
   )
 }

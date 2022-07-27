@@ -10,6 +10,15 @@ dotenv.config()
 const app = express()
 
 // middlewares
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  )
+  res.header('Access-Control-Allow-Methods', 'GET, POST, DELETE')
+  next()
+})
 app.use(express.json())
 app.use('/api/books', bookRoutes)
 
@@ -18,7 +27,7 @@ mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
     // listen for requests
-    app.listen(process.env.PORT || 3000)
+    app.listen(process.env.PORT || 4000)
 
     if (process.env.DEV != null)
       console.log(
