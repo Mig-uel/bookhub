@@ -2,7 +2,6 @@
 
 Bookhub is a MERN application where users can simply create, read, update and delete books. I created this project to help me apply recently learned material.
 
-
 ## Features
 
 - Add, delete, update, and get books
@@ -10,10 +9,9 @@ Bookhub is a MERN application where users can simply create, read, update and de
 
 ## Tech Stack
 
-**Client:** React, Redux Toolkit, Redux Persist, ~~Reselect~~, Styled Components
+**Client:** React, Redux Toolkit, Redux Persist, Redux Thunk, Styled Components
 
 **Server:** Node, Express, Mongoose
-
 
 ## Demo
 
@@ -25,6 +23,7 @@ https://thebookhub.netlify.app/
 - Light/dark mode
 - Secure API routes
 - Update UI/UX
+
 ## Authors
 
 - [@migu-uel](https://www.github.com/mig-uel) (Developer)
